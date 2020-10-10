@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+graphql:
+  tools:
+    schema-location-pattern: '**/*.graphql'
+  servlet:
+    # If this property is set as a low number, Voyager won't load
+    maxQueryDepth: 100  # To avoid stack overflow / out of memory query requests
+  playground: # Playground is test only, normally
+    headers:
+      Authorization: Bearer TOKEN  # Useful to set needed tokens to request queries
+    tabs:
+      - name: Bank account sample query
+        query: classpath:playground/bank_account.graphql  # Set location of default queries
+        variables: classpath:playground/bank_account_variables.json  # Set location of default values to queries

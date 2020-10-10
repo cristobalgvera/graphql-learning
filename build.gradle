@@ -1,0 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'cl.crisgvera'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+def graphqlVersion = '8.0.0'
+
+dependencies {
+    // GraphQL dependencies
+    implementation "com.graphql-java-kickstart:graphql-spring-boot-starter:${graphqlVersion}"
+    runtimeOnly "com.graphql-java-kickstart:playground-spring-boot-starter:${graphqlVersion}"
+    runtimeOnly "com.graphql-java-kickstart:voyager-spring-boot-starter:${graphqlVersion}"
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += '--enable-preview'
+}
+tasks.withType(Test) {
+    jvmArgs += "--enable-preview"
+}

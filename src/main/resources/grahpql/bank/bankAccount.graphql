@@ -1,0 +1,6 @@
+# Is necessary to use good descriptives names to our fields
+type BankAccount {
+    id: ID!
+    client: Client!
+    currency: Currency!
+}

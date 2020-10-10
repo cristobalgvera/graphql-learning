@@ -1,0 +1,12 @@
+# Predefined GraphQL query that will be shown in playground's home page
+query GET_BANK_ACCOUNT($id: ID) {
+    bankAccount(id: $id) {
+        client {
+            id
+            firstName
+            middleNames
+            lastName
+        }
+        currency
+    }
+}
